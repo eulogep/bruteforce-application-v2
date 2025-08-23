@@ -1,3 +1,16 @@
+/**
+ * BruteForce Tool - Outil de Test de Sécurité
+ *
+ * @author MABIALA EULOGE JUNIOR
+ * @description Application de test de sécurité et d'audit de mots de passe
+ * @version 2.0
+ * @license MIT
+ * @created 2024
+ *
+ * Développé dans le cadre d'études en ingénierie informatique
+ * Spécialisation : Cybersécurité et Tests de Pénétration
+ */
+
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
