@@ -57,37 +57,49 @@ function App() {
   useEffect(() => {
     const fetchDictionaries = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/dictionaries`)
+        const response = await fetch(`${API_BASE_URL}/dictionaries`)
         if (response.ok) {
           const data = await response.json()
           setDictionaries(data)
         }
       } catch (err) {
         console.error('Erreur lors du chargement des dictionnaires:', err)
+        // Set default dictionaries for demo purposes
+        setDictionaries(['rockyou', 'common_passwords', 'french_passwords'])
       }
     }
 
     const fetchRules = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/rules`)
+        const response = await fetch(`${API_BASE_URL}/rules`)
         if (response.ok) {
           const data = await response.json()
           setAvailableRules(data)
         }
       } catch (err) {
         console.error('Erreur lors du chargement des règles:', err)
+        // Set default rules for demo purposes
+        setAvailableRules([':capitalize', ':uppercase', ':lowercase', ':append_digit:N', ':prepend_digit:N'])
       }
     }
 
     const fetchGpuInfo = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/api/gpu_info`)
+        const response = await fetch(`${API_BASE_URL}/gpu_info`)
         if (response.ok) {
           const data = await response.json()
           setGpuInfo(data)
         }
       } catch (err) {
         console.error('Erreur lors du chargement des informations GPU:', err)
+        // Set default GPU info for demo purposes
+        setGpuInfo({
+          gpu_available: false,
+          hashcat_available: false,
+          john_available: false,
+          hashcat_path: null,
+          john_path: null
+        })
       }
     }
 
