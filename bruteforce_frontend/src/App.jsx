@@ -21,7 +21,9 @@ import { Textarea } from '@/components/ui/textarea.jsx'
 import { Alert, AlertDescription } from '@/components/ui/alert.jsx'
 import { Progress } from '@/components/ui/progress.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
-import { Shield, Play, Square, AlertTriangle, CheckCircle, Clock, Cpu, HardDrive } from 'lucide-react'
+import { Shield, Play, Square, AlertTriangle, CheckCircle, Clock, Cpu, HardDrive, BarChart3, Settings } from 'lucide-react'
+import Dashboard from './components/Dashboard'
+import { Loading } from './components/ui/loading'
 import './App.css'
 
 // Configuration de l'API backend
@@ -62,6 +64,8 @@ function App() {
   const [dictionaries, setDictionaries] = useState([])
   const [availableRules, setAvailableRules] = useState([])
   const [gpuInfo, setGpuInfo] = useState(null) // New: to store GPU information
+  const [activeView, setActiveView] = useState('config') // 'config' or 'dashboard'
+  const [isLoading, setIsLoading] = useState(false)
 
   const generateAttackId = () => {
     return 'attack_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
