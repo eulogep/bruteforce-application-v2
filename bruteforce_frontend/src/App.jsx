@@ -714,20 +714,21 @@ function App() {
                 </>
               )}
 
-              <Button 
-                onClick={handleStartAttack} 
-                disabled={isRunning} 
-                className="w-full bg-green-600 hover:bg-green-700"
+              <RippleButton
+                onClick={handleStartAttack}
+                disabled={isRunning}
+                className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg shadow-green-500/25"
               >
-                <Play className="mr-2 h-4 w-4" /> Démarrer
-              </Button>
-              <Button 
-                onClick={handleStopAttack} 
-                disabled={!isRunning} 
-                className="w-full bg-red-600 hover:bg-red-700"
+                <MorphingIcon icon1={Play} icon2={Clock} isActive={isRunning} size={16} />
+                <span className="ml-2">{isRunning ? 'En cours...' : 'D��marrer'}</span>
+              </RippleButton>
+              <RippleButton
+                onClick={handleStopAttack}
+                disabled={!isRunning}
+                className="w-full bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 shadow-lg shadow-red-500/25"
               >
                 <Square className="mr-2 h-4 w-4" /> Arrêter
-              </Button>
+              </RippleButton>
             </CardContent>
           </Card>
 
