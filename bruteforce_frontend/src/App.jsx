@@ -12,7 +12,7 @@ import { Shield, Play, Square, AlertTriangle, CheckCircle, Clock, Cpu, HardDrive
 import './App.css'
 
 // Configuration de l'API backend
-const API_BASE_URL = 'https://mzhyi8cd0mv7.manus.space'
+const API_BASE_URL = '/api'
 
 function App() {
   const [attackConfig, setAttackConfig] = useState({
@@ -878,5 +878,3 @@ function App() {
 }
 
 export default App
-
-
