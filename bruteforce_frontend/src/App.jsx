@@ -310,10 +310,18 @@ function App() {
         <Alert className="border-yellow-500 bg-yellow-500/10">
           <AlertTriangle className="h-4 w-4 text-yellow-500" />
           <AlertDescription className="text-yellow-200">
-            <strong>Avertissement :</strong> Cet outil est destiné uniquement à des fins éducatives et de test de sécurité autorisé. 
+            <strong>Avertissement :</strong> Cet outil est destiné uniquement à des fins éducatives et de test de sécurité autorisé.
             L'utilisation non autorisée contre des systèmes tiers est illégale et contraire à l'éthique.
           </AlertDescription>
         </Alert>
+
+        {/* Vue Dashboard */}
+        {activeView === 'dashboard' && (
+          <Dashboard attackStatus={attackStatus} systemInfo={gpuInfo} />
+        )}
+
+        {/* Vue Configuration */}
+        {activeView === 'config' && (
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Configuration */}
@@ -774,6 +782,7 @@ function App() {
             </CardContent>
           </Card>
         </div>
+        )}
 
         {/* GPU Information Section */}
         {gpuInfo && (
