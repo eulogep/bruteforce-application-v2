@@ -24,6 +24,10 @@ import { Badge } from '@/components/ui/badge.jsx'
 import { Shield, Play, Square, AlertTriangle, CheckCircle, Clock, Cpu, HardDrive, BarChart3, Settings } from 'lucide-react'
 import Dashboard from './components/Dashboard'
 import { Loading } from './components/ui/loading'
+import { TypeWriter, GradientText, FadeInText } from './components/ui/animated-text'
+import { TiltCard, GlowCard, FloatingCard } from './components/ui/interactive-card'
+import { FloatingParticles, CyberGrid, AnimatedGradient } from './components/ui/background-effects'
+import { RippleButton, MagneticButton, MorphingIcon } from './components/ui/micro-interactions'
 import './App.css'
 
 // Configuration de l'API backend
@@ -267,43 +271,75 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4">
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header avec Navigation */}
-        <div className="space-y-4">
-          <div className="text-center space-y-2">
-            <div className="flex items-center justify-center space-x-2">
-              <Shield className="h-8 w-8 text-purple-400" />
-              <h1 className="text-3xl font-bold text-white">BruteForce Tool</h1>
+        <div className="space-y-6 relative">
+          {/* Background Effects */}
+          <FloatingParticles count={30} className="opacity-30" />
+          <CyberGrid className="opacity-20" />
+
+          <FadeInText delay={0} className="text-center space-y-3">
+            <div className="flex items-center justify-center space-x-3">
+              <div className="relative">
+                <Shield className="h-10 w-10 text-purple-400 animate-pulse" />
+                <div className="absolute inset-0 h-10 w-10 border-2 border-purple-400 rounded-full animate-ping opacity-20" />
+              </div>
+              <GradientText
+                className="text-4xl font-bold"
+                gradient="from-purple-400 via-pink-500 to-red-500"
+              >
+                <TypeWriter text="BruteForce Tool" speed={150} />
+              </GradientText>
             </div>
-            <p className="text-slate-300">Outil de test de sécurité pour l'éducation et les tests autorisés</p>
-            <p className="text-xs text-slate-400">Développé par MABIALA EULOGE JUNIOR</p>
-          </div>
+            <FadeInText delay={200}>
+              <p className="text-slate-300 text-lg">
+                Outil de test de sécurité pour l'éducation et les tests autorisés
+              </p>
+            </FadeInText>
+            <FadeInText delay={400}>
+              <p className="text-xs text-slate-400 bg-gradient-to-r from-slate-800 to-slate-700 px-4 py-2 rounded-full inline-block">
+                🎓 Développé par <span className="text-purple-400 font-semibold">MABIALA EULOGE JUNIOR</span>
+              </p>
+            </FadeInText>
+          </FadeInText>
 
           {/* Navigation Tabs */}
-          <div className="flex justify-center">
-            <div className="flex bg-slate-800/50 rounded-lg p-1 border border-slate-700">
-              <button
-                onClick={() => setActiveView('config')}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center space-x-2 ${
-                  activeView === 'config'
-                    ? 'bg-purple-600 text-white'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-700'
-                }`}
-              >
-                <Settings className="h-4 w-4" />
-                <span>Configuration</span>
-              </button>
-              <button
-                onClick={() => setActiveView('dashboard')}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center space-x-2 ${
-                  activeView === 'dashboard'
-                    ? 'bg-purple-600 text-white'
-                    : 'text-slate-300 hover:text-white hover:bg-slate-700'
-                }`}
-              >
-                <BarChart3 className="h-4 w-4" />
-                <span>Dashboard</span>
-              </button>
-            </div>
-          </div>
+          <FadeInText delay={600} className="flex justify-center">
+            <GlowCard glowColor="purple" className="inline-block">
+              <div className="flex bg-slate-900/70 backdrop-blur-sm rounded-xl p-1.5 border border-slate-700/50 shadow-2xl">
+                <MagneticButton
+                  onClick={() => setActiveView('config')}
+                  className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center space-x-2 ${
+                    activeView === 'config'
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25'
+                      : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                  }`}
+                >
+                  <MorphingIcon
+                    icon1={Settings}
+                    icon2={Cpu}
+                    isActive={activeView === 'config'}
+                    size={16}
+                  />
+                  <span>Configuration</span>
+                </MagneticButton>
+                <MagneticButton
+                  onClick={() => setActiveView('dashboard')}
+                  className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center space-x-2 ${
+                    activeView === 'dashboard'
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25'
+                      : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                  }`}
+                >
+                  <MorphingIcon
+                    icon1={BarChart3}
+                    icon2={Shield}
+                    isActive={activeView === 'dashboard'}
+                    size={16}
+                  />
+                  <span>Dashboard</span>
+                </MagneticButton>
+              </div>
+            </GlowCard>
+          </FadeInText>
         </div>
 
         {/* Avertissement */}
