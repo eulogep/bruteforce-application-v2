@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  bruteforce_backend:
+    build:
+      context: ./bruteforce_backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./bruteforce_backend:/app
+    environment:
+      - FLASK_ENV=production
+    networks:
+      - bruteforce_network
+
+  bruteforce_frontend:
+    build:
+      context: ./bruteforce_frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - bruteforce_backend
+    networks:
+      - bruteforce_network
+
+networks:
+  bruteforce_network:
+    driver: bridge
+
+
