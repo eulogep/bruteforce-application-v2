@@ -6,16 +6,7 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    react({
-      // Optimisations React
-      jsxImportSource: '@emotion/react',
-      babel: {
-        plugins: [
-          // Optimisation des re-renders
-          ['@babel/plugin-transform-react-jsx', { runtime: 'automatic' }]
-        ]
-      }
-    }),
+    react(),
     tailwindcss()
   ],
 
