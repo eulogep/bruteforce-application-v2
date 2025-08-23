@@ -1,3 +1,12 @@
+#!/usr/bin/env python3
+"""
+BruteForce Tool - Routes API pour les attaques de force brute
+
+@author: MABIALA EULOGE JUNIOR
+@version: 2.0
+@license: MIT
+@description: Endpoints RESTful pour la gestion des attaques de sécurité
+"""
 
 from flask import Blueprint, request, jsonify
 from src.bruteforce_engine import BruteForceEngine
@@ -108,5 +117,3 @@ def get_attack_status(attack_id):
         del active_attacks[attack_id]
 
     return jsonify(status), 200
-
-
