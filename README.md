@@ -137,13 +137,21 @@ Ce projet a été développé exclusivement pour :
 - **Analyse de vulnérabilités** d'authentification
 - **Sécurité défensive** et contre-mesures
 
-## 🔮 Évolutions Prévues
+## 🆕 Nouvelles Fonctionnalités (v2.0)
 
+### ✅ Récemment Ajoutées
+- **Dashboard Avancé** avec métriques temps réel
+- **Analyse de Sécurité** intelligente des mots de passe
+- **Optimisations Performance** avec hooks personnalisés
+- **Déploiement Netlify** configuré automatiquement
+- **Architecture Modulaire** avec composants réutilisables
+
+### 🔮 Évolutions Prévues
 - [ ] **Intégration SIEM** pour monitoring avancé
 - [ ] **Module de social engineering** pour tests complets
-- [ ] **Support multi-threading** optimisé
-- [ ] **Interface web responsive** pour déploiement cloud
-- [ ] **Intégration CI/CD** pour tests automatisés
+- [ ] **API GraphQL** pour requêtes optimisées
+- [ ] **Progressive Web App** (PWA) avec offline support
+- [ ] **Machine Learning** pour prédiction de robustesse
 
 ## 👨‍💻 À Propos de l'Auteur
 
