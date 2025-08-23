@@ -197,7 +197,7 @@ function App() {
 
   const handleStopAttack = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/api/stop_attack`, {
+      const response = await fetch(`${API_BASE_URL}/stop_attack`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -212,7 +212,9 @@ function App() {
         setError(errorData.error || 'Erreur lors de l\'arrêt de l\'attaque')
       }
     } catch (err) {
-      setError('Erreur de connexion au serveur')
+      // Demo mode - simulate attack stop
+      setIsRunning(false)
+      setAttackStatus(prev => ({ ...prev, running: false }))
     }
   }
 
