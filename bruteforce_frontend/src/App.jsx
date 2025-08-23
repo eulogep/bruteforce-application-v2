@@ -141,12 +141,12 @@ function App() {
   const handleStartAttack = async () => {
     setError('')
     setSuccess('')
-    
+
     const attackId = generateAttackId()
-    const configToSend = { 
-      ...attackConfig, 
+    const configToSend = {
+      ...attackConfig,
       attack_id: attackId,
-      target_params: { ...attackConfig.target_params, type: attackConfig.attack_type } 
+      target_params: { ...attackConfig.target_params, type: attackConfig.attack_type }
     }
 
     // Add credential stuffing specific parameters to configToSend
@@ -157,9 +157,9 @@ function App() {
       configToSend.password_field_name = attackConfig.password_field_name
       configToSend.success_indicator = attackConfig.success_indicator
     }
-    
+
     try {
-      const response = await fetch(`${API_BASE_URL}/api/start_attack`, {
+      const response = await fetch(`${API_BASE_URL}/start_attack`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -176,7 +176,22 @@ function App() {
         setError(errorData.error || 'Erreur lors du démarrage de l\'attaque')
       }
     } catch (err) {
-      setError('Erreur de connexion au serveur')
+      // Demo mode - simulate attack start when backend is not available
+      setError('')
+      setAttackConfig(configToSend)
+      setIsRunning(true)
+      setAttackStatus({
+        running: true,
+        attempts: 0,
+        elapsed_time: 0,
+        found_password: null,
+        speed: 0,
+        progress: 0,
+        total_combinations: Math.pow(26, Math.max(configToSend.min_length || 4, 4)),
+        eta_seconds: 300,
+        found_credentials: []
+      })
+      setSuccess('Mode démo activé - Backend non disponible')
     }
   }
 
