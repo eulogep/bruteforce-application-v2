@@ -266,13 +266,44 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-4">
       <div className="max-w-4xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="text-center space-y-2">
-          <div className="flex items-center justify-center space-x-2">
-            <Shield className="h-8 w-8 text-purple-400" />
-            <h1 className="text-3xl font-bold text-white">BruteForce Tool</h1>
+        {/* Header avec Navigation */}
+        <div className="space-y-4">
+          <div className="text-center space-y-2">
+            <div className="flex items-center justify-center space-x-2">
+              <Shield className="h-8 w-8 text-purple-400" />
+              <h1 className="text-3xl font-bold text-white">BruteForce Tool</h1>
+            </div>
+            <p className="text-slate-300">Outil de test de sécurité pour l'éducation et les tests autorisés</p>
+            <p className="text-xs text-slate-400">Développé par MABIALA EULOGE JUNIOR</p>
           </div>
-          <p className="text-slate-300">Outil de test de sécurité pour l'éducation et les tests autorisés</p>
+
+          {/* Navigation Tabs */}
+          <div className="flex justify-center">
+            <div className="flex bg-slate-800/50 rounded-lg p-1 border border-slate-700">
+              <button
+                onClick={() => setActiveView('config')}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center space-x-2 ${
+                  activeView === 'config'
+                    ? 'bg-purple-600 text-white'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-700'
+                }`}
+              >
+                <Settings className="h-4 w-4" />
+                <span>Configuration</span>
+              </button>
+              <button
+                onClick={() => setActiveView('dashboard')}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center space-x-2 ${
+                  activeView === 'dashboard'
+                    ? 'bg-purple-600 text-white'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-700'
+                }`}
+              >
+                <BarChart3 className="h-4 w-4" />
+                <span>Dashboard</span>
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Avertissement */}
