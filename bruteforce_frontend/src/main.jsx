@@ -1,3 +1,9 @@
+/**
+ * BruteForce Tool - Point d'entrée de l'application
+ * @author MABIALA EULOGE JUNIOR
+ * @license MIT
+ */
+
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'

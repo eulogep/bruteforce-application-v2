@@ -1,7 +1,10 @@
 {
   "name": "bruteforce_frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
+  "author": "MABIALA EULOGE JUNIOR",
+  "description": "BruteForce Tool - Suite de test de sécurité pour l'audit de mots de passe",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
