@@ -1,3 +1,18 @@
+#!/usr/bin/env python3
+"""
+BruteForce Tool - Backend API Server
+Serveur Flask pour la suite de test de sécurité
+
+@author: MABIALA EULOGE JUNIOR
+@version: 2.0
+@license: MIT
+@description: API RESTful pour les outils de test de cybersécurité
+@created: 2024
+
+Développé dans le cadre d'études en ingénierie informatique
+Spécialisation : Cybersécurité et Tests de Pénétration
+"""
+
 import os
 import sys
 # DON'T CHANGE THIS !!!
@@ -41,5 +56,3 @@ def serve(path):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-
-
