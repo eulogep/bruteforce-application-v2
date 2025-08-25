@@ -2,7 +2,7 @@
  * BruteForce Tool - Outil de Test de Sécurité
  *
  * @author MABIALA EULOGE JUNIOR
- * @description Application de test de sécurité et d'audit de mots de passe
+ * @description Application de test de sécurit�� et d'audit de mots de passe
  * @version 2.0
  * @license MIT
  * @created 2024
@@ -23,6 +23,7 @@ import { Progress } from '@/components/ui/progress.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
 import { Shield, Play, Square, AlertTriangle, CheckCircle, Clock, Cpu, HardDrive, BarChart3, Settings } from 'lucide-react'
 import Dashboard from './components/Dashboard'
+import PerformanceTest from './components/PerformanceTest'
 import { Loading } from './components/ui/loading'
 import { TypeWriter, GradientText, FadeInText } from './components/ui/animated-text'
 import { TiltCard, GlowCard, FloatingCard } from './components/ui/interactive-card'
@@ -68,7 +69,7 @@ function App() {
   const [dictionaries, setDictionaries] = useState([])
   const [availableRules, setAvailableRules] = useState([])
   const [gpuInfo, setGpuInfo] = useState(null) // New: to store GPU information
-  const [activeView, setActiveView] = useState('config') // 'config' or 'dashboard'
+  const [activeView, setActiveView] = useState('config') // 'config', 'dashboard', or 'performance'
   const [isLoading, setIsLoading] = useState(false)
 
   const generateAttackId = () => {
@@ -330,7 +331,7 @@ function App() {
               <div className="flex bg-slate-900/70 backdrop-blur-sm rounded-xl p-1.5 border border-slate-700/50 shadow-2xl">
                 <MagneticButton
                   onClick={() => setActiveView('config')}
-                  className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center space-x-2 ${
+                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center space-x-2 ${
                     activeView === 'config'
                       ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25'
                       : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
@@ -346,7 +347,7 @@ function App() {
                 </MagneticButton>
                 <MagneticButton
                   onClick={() => setActiveView('dashboard')}
-                  className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center space-x-2 ${
+                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center space-x-2 ${
                     activeView === 'dashboard'
                       ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25'
                       : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
@@ -359,6 +360,22 @@ function App() {
                     size={16}
                   />
                   <span>Dashboard</span>
+                </MagneticButton>
+                <MagneticButton
+                  onClick={() => setActiveView('performance')}
+                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center space-x-2 ${
+                    activeView === 'performance'
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25'
+                      : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                  }`}
+                >
+                  <MorphingIcon
+                    icon1={Clock}
+                    icon2={CheckCircle}
+                    isActive={activeView === 'performance'}
+                    size={16}
+                  />
+                  <span>Performance</span>
                 </MagneticButton>
               </div>
             </GlowCard>
@@ -377,6 +394,11 @@ function App() {
         {/* Vue Dashboard */}
         {activeView === 'dashboard' && (
           <Dashboard attackStatus={attackStatus} systemInfo={gpuInfo} />
+        )}
+
+        {/* Vue Performance */}
+        {activeView === 'performance' && (
+          <PerformanceTest />
         )}
 
         {/* Vue Configuration */}
