@@ -262,7 +262,7 @@ const Dashboard = ({ attackStatus, systemInfo }) => {
                   <div>
                     <h4 className="font-medium mb-2">Recommandations</h4>
                     <div className="space-y-1 text-sm text-muted-foreground">
-                      <div>• Utiliser des mots de passe > 12 caractères</div>
+                      <div>• Utiliser des mots de passe &gt; 12 caractères</div>
                       <div>• Combiner majuscules, minuscules, chiffres</div>
                       <div>• Ajouter des caractères spéciaux</div>
                     </div>
