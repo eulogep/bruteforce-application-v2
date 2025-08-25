@@ -30,12 +30,14 @@ import { TypeWriter, GradientText, FadeInText } from './components/ui/animated-t
 import { TiltCard, GlowCard, FloatingCard } from './components/ui/interactive-card'
 import { FloatingParticles, CyberGrid, AnimatedGradient } from './components/ui/background-effects'
 import { RippleButton, MagneticButton, MorphingIcon } from './components/ui/micro-interactions'
+import { ToastProvider, useNotifications } from './components/ui/toast'
 import './App.css'
 
 // Configuration de l'API backend
 const API_BASE_URL = '/api'
 
-function App() {
+function AppContent() {
+  const notifications = useNotifications()
   const [attackConfig, setAttackConfig] = useState({
     attack_id: '',
     attack_type: 'simple_string',
@@ -136,7 +138,7 @@ function App() {
           }
 
           setGpuInfo(await gpuRes)
-          setSuccess('🟢 Backend connecté - Mode complet activé')
+          notifications.success('🟢 Backend connecté - Mode complet activé')
         } else {
           throw new Error('Backend unavailable')
         }
@@ -145,7 +147,7 @@ function App() {
         setDictionaries(demoData.dictionaries)
         setAvailableRules(demoData.rules)
         setGpuInfo(demoData.gpuInfo)
-        setSuccess('🟡 Mode démo activé - Toutes les fonctionnalités disponibles')
+        notifications.notifyDemoMode()
       } finally {
         setIsLoading(false)
       }
@@ -234,6 +236,7 @@ function App() {
         setAttackConfig(configToSend)
         setIsRunning(true)
         setAttackStatus({ running: true, attempts: 0, elapsed_time: 0, found_password: null, speed: 0, progress: 0, total_combinations: 0, eta_seconds: 0, found_credentials: [] })
+        notifications.notifyAttackStarted()
       } else {
         const errorData = await response.json()
         setError(errorData.error || 'Erreur lors du démarrage de l\'attaque')
@@ -254,7 +257,7 @@ function App() {
         eta_seconds: 300,
         found_credentials: []
       })
-      setSuccess('Mode démo activé - Backend non disponible')
+      notifications.notifyAttackStarted()
     }
   }
 
@@ -270,6 +273,7 @@ function App() {
 
       if (response.ok) {
         setIsRunning(false)
+        notifications.notifyAttackStopped()
       } else {
         const errorData = await response.json()
         setError(errorData.error || 'Erreur lors de l\'arrêt de l\'attaque')
@@ -1090,6 +1094,14 @@ function App() {
         </Card>
       </div>
     </div>
+  )
+}
+
+function App() {
+  return (
+    <ToastProvider>
+      <AppContent />
+    </ToastProvider>
   )
 }
 
