@@ -2,7 +2,7 @@
  * BruteForce Tool - Outil de Test de Sécurité
  *
  * @author MABIALA EULOGE JUNIOR
- * @description Application de test de sécurit�� et d'audit de mots de passe
+ * @description Application de test de sécurité et d'audit de mots de passe
  * @version 2.0
  * @license MIT
  * @created 2024
@@ -24,6 +24,7 @@ import { Badge } from '@/components/ui/badge.jsx'
 import { Shield, Play, Square, AlertTriangle, CheckCircle, Clock, Cpu, HardDrive, BarChart3, Settings } from 'lucide-react'
 import Dashboard from './components/Dashboard'
 import PerformanceTest from './components/PerformanceTest'
+import SecurityInsights from './components/SecurityInsights'
 import { Loading } from './components/ui/loading'
 import { TypeWriter, GradientText, FadeInText } from './components/ui/animated-text'
 import { TiltCard, GlowCard, FloatingCard } from './components/ui/interactive-card'
@@ -69,7 +70,7 @@ function App() {
   const [dictionaries, setDictionaries] = useState([])
   const [availableRules, setAvailableRules] = useState([])
   const [gpuInfo, setGpuInfo] = useState(null) // New: to store GPU information
-  const [activeView, setActiveView] = useState('config') // 'config', 'dashboard', or 'performance'
+  const [activeView, setActiveView] = useState('config') // 'config', 'dashboard', 'performance', or 'analysis'
   const [isLoading, setIsLoading] = useState(false)
 
   const generateAttackId = () => {
@@ -328,10 +329,10 @@ function App() {
           {/* Navigation Tabs */}
           <FadeInText delay={600} className="flex justify-center">
             <GlowCard glowColor="purple" className="inline-block">
-              <div className="flex bg-slate-900/70 backdrop-blur-sm rounded-xl p-1.5 border border-slate-700/50 shadow-2xl">
+              <div className="grid grid-cols-2 md:grid-cols-4 bg-slate-900/70 backdrop-blur-sm rounded-xl p-1.5 border border-slate-700/50 shadow-2xl gap-1">
                 <MagneticButton
                   onClick={() => setActiveView('config')}
-                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center space-x-2 ${
+                  className={`px-3 py-3 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-2 ${
                     activeView === 'config'
                       ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25'
                       : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
@@ -343,11 +344,11 @@ function App() {
                     isActive={activeView === 'config'}
                     size={16}
                   />
-                  <span>Configuration</span>
+                  <span>Config</span>
                 </MagneticButton>
                 <MagneticButton
                   onClick={() => setActiveView('dashboard')}
-                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center space-x-2 ${
+                  className={`px-3 py-3 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-2 ${
                     activeView === 'dashboard'
                       ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25'
                       : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
@@ -363,7 +364,7 @@ function App() {
                 </MagneticButton>
                 <MagneticButton
                   onClick={() => setActiveView('performance')}
-                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-300 flex items-center space-x-2 ${
+                  className={`px-3 py-3 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-2 ${
                     activeView === 'performance'
                       ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25'
                       : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
@@ -375,7 +376,23 @@ function App() {
                     isActive={activeView === 'performance'}
                     size={16}
                   />
-                  <span>Performance</span>
+                  <span>Tests</span>
+                </MagneticButton>
+                <MagneticButton
+                  onClick={() => setActiveView('analysis')}
+                  className={`px-3 py-3 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-2 ${
+                    activeView === 'analysis'
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/25'
+                      : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
+                  }`}
+                >
+                  <MorphingIcon
+                    icon1={Shield}
+                    icon2={AlertTriangle}
+                    isActive={activeView === 'analysis'}
+                    size={16}
+                  />
+                  <span>Analyse</span>
                 </MagneticButton>
               </div>
             </GlowCard>
@@ -399,6 +416,11 @@ function App() {
         {/* Vue Performance */}
         {activeView === 'performance' && (
           <PerformanceTest />
+        )}
+
+        {/* Vue Analyse de Sécurité */}
+        {activeView === 'analysis' && (
+          <SecurityInsights attackConfig={attackConfig} attackStatus={attackStatus} />
         )}
 
         {/* Vue Configuration */}
